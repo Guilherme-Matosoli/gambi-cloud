@@ -15,9 +15,7 @@ export class UploadController {
       };
 
       const uploadService = new UploadServide();
-
-
-      const uploadedImage = uploadService.upload({ file: data, token });
+      const uploadedImage = await uploadService.upload({ file: data, token });
 
       return reply.status(201).send({ message: uploadedImage });
     }
