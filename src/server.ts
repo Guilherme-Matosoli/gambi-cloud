@@ -18,14 +18,14 @@ app.post('/token/create', new CreateTokenController().create);
 
 app.route({
   method: 'GET',
-  url: '/images/:userId',
+  url: '/images',
   preHandler: autMiddleware,
   handler: new GetImageNameController().get
 });
 
 app.route({
   method: 'GET',
-  url: '/render/:userId/:filename',
+  url: '/render/:filename',
   preHandler: autMiddleware,
   handler: new RenderImageController().provide
 });
