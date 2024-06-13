@@ -4,7 +4,8 @@ import multipart from "@fastify/multipart";
 
 import { UploadController } from "./controllers/UploadController";
 import { CreateTokenController } from './controllers/CreateTokenController';
-import { GetImagesController } from './controllers/GetImagesController';
+import { GetImageNameController } from './controllers/GetImageNameController';
+import { RenderImageController } from './controllers/RenderImageController';
 
 export const app = fastify();
 app.register(multipart);
@@ -14,7 +15,9 @@ app.post('/upload', new UploadController().upload);
 
 app.post('/token/create', new CreateTokenController().create);
 
-app.get('/images/:userId', new GetImagesController().get);
+app.get('/images/:userId', new GetImageNameController().get);
+
+app.get('/render/:userId/:filename', new RenderImageController().provide);
 
 app.listen({ port: 4000 }).then(() => {
   console.log("Server is running on port 4000")
