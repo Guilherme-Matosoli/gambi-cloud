@@ -1,6 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import path from "path";
-import fs from "fs";
+import { UploadServide } from "../services/UploadService";
 
 export class UploadController {
   async upload(req: FastifyRequest, reply: FastifyReply) {
@@ -15,17 +14,12 @@ export class UploadController {
         return reply.status(400).send({ message: "No file uploaded" })
       };
 
-      const chunks: Buffer[] = [];
-      for await (const chunk of data.file) {
-        chunks.push(chunk);
-      };
-      const buffer = Buffer.concat(chunks);
-      const uploadDir = path.resolve(__dirname, "../../public/uploads");
-      const filePath = path.join(uploadDir, data.filename)
+      const uploadService = new UploadServide();
 
-      fs.writeFileSync(filePath, buffer);
 
-      return reply.status(200).send({ token });
+      const uploadedImage = uploadService.upload({ file: data, token });
+
+      return reply.status(201).send({ message: uploadedImage });
     }
     catch (err) {
       console.log(err);
