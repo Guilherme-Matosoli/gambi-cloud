@@ -11,7 +11,9 @@ interface RequestParams {
 export class RenderImageController {
   async provide(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const { userId, filename } = req.params as RequestParams;
+      const { filename } = req.params as RequestParams;
+      const userId = req.headers.cookie as string;
+
       const renderImageService = new RenderImageService();
 
       const image = await renderImageService.render({ userId, filename });

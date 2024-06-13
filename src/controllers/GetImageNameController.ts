@@ -4,7 +4,7 @@ import { GetImageNameService } from "../services/GetImageNameService";
 export class GetImageNameController {
   async get(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const { userId } = req.params as { userId: string };
+      const userId = req.headers.cookie as string;
 
       const getImageService = new GetImageNameService();
       const images = await getImageService.get(userId);
