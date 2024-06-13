@@ -2,6 +2,7 @@ import path from "path";
 import fs from "fs";
 import { MultipartFile } from "@fastify/multipart";
 import { validateFile } from "../utils/validateFile";
+import { DecryptToken } from "./DecryptToken";
 
 interface UploadProps {
   file: MultipartFile,
@@ -21,8 +22,10 @@ export class UploadServide {
       const fileValidation = validateFile({ file, fileSize });
       if (fileValidation != null) return fileValidation;
 
+      const userId = new DecryptToken().decrypt(token);
+
       const buffer = Buffer.concat(chunks);
-      const uploadDir = path.resolve(__dirname, "../../public/uploads");
+      const uploadDir = path.resolve(__dirname, "../../public/uploads", userId);
       const filePath = path.join(uploadDir, file.filename);
 
       fs.writeFileSync(filePath, buffer);
