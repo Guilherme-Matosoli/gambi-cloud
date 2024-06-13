@@ -11,7 +11,7 @@ export class UploadServide {
   async upload({ file, token }: UploadProps) {
     try {
       const chunks: Buffer[] = [];
-      for await (const chunk of chunks) {
+      for await (const chunk of file.file) {
         chunks.push(chunk)
       };
 
