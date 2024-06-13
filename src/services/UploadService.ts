@@ -27,6 +27,8 @@ export class UploadServide {
 
       const buffer = Buffer.concat(chunks);
       const uploadDir = path.resolve(__dirname, "../../public/uploads", userId);
+      if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+
       const filePath = path.join(uploadDir, file.filename);
 
       const fileExists = await verifyFileExists(filePath);
