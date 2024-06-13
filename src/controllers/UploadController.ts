@@ -6,12 +6,12 @@ export class UploadController {
     try {
       const token = req.headers.authorization;
       if (!token) {
-        return reply.status(401).send({ message: "User without authorization token" })
+        return reply.status(401).send({ message: "User without authorization token" });
       };
 
       const data = await req.file();
       if (!data) {
-        return reply.status(400).send({ message: "No file uploaded" })
+        return reply.status(400).send({ message: "No file uploaded" });
       };
 
       const uploadService = new UploadServide();
