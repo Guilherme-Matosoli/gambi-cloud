@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export class CreateTokenService {
-  async create(userId: string) {
+  async create({ userId }: { userId: string }) {
     try {
       const JWTSECRET = process.env.JWT_SECRET as string;
       const token = jwt.sign(userId, JWTSECRET);
