@@ -10,9 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/multipart": "^8.3.0",
     "fastify": "^4.27.0",
     "multer": "^1.4.5-lts.1",
     "tsc": "^2.0.4",
     "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2"
   }
 }
