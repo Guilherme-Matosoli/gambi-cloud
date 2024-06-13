@@ -3,6 +3,7 @@ import fs from "fs";
 import { MultipartFile } from "@fastify/multipart";
 import { validateFile } from "../utils/validateFile";
 import { DecryptToken } from "./DecryptToken";
+import { verifyFileExists } from "../utils/verifyFileExists";
 
 interface UploadProps {
   file: MultipartFile,
@@ -27,6 +28,9 @@ export class UploadServide {
       const buffer = Buffer.concat(chunks);
       const uploadDir = path.resolve(__dirname, "../../public/uploads", userId);
       const filePath = path.join(uploadDir, file.filename);
+
+      const fileExists = await verifyFileExists(filePath);
+      if (fileExists) return "File already exist";
 
       fs.writeFileSync(filePath, buffer);
 

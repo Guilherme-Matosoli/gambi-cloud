@@ -17,7 +17,11 @@ export class UploadController {
       const uploadService = new UploadServide();
       const uploadedImage = await uploadService.upload({ file: data, token });
 
-      if (uploadedImage == "File extension not accept" || uploadedImage == "Max size exceeded limit (5MB)") return reply.status(415).send({ message: uploadedImage });
+      if (
+        uploadedImage == "File extension not accept" ||
+        uploadedImage == "Max size exceeded limit (5MB)" ||
+        uploadedImage == "File already exist"
+      ) return reply.status(415).send({ message: uploadedImage });
 
       return reply.status(201).send({ message: uploadedImage });
     }
