@@ -19,7 +19,7 @@ export class UploadServide {
       };
 
       const fileValidation = validateFile({ file, fileSize });
-      if (!fileValidation != null) return fileValidation;
+      if (fileValidation != null) return fileValidation;
 
       const buffer = Buffer.concat(chunks);
       const uploadDir = path.resolve(__dirname, "../../public/uploads");
