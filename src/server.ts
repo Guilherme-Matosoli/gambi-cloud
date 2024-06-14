@@ -6,7 +6,6 @@ import { UploadController } from "./controllers/UploadController";
 import { CreateTokenController } from './controllers/CreateTokenController';
 import { GetImageNameController } from './controllers/GetImageNameController';
 import { RenderImageController } from './controllers/RenderImageController';
-import { autMiddleware } from './middlewares/authMiddleware';
 
 export const app = fastify();
 app.register(multipart);
@@ -16,19 +15,9 @@ app.post('/upload', new UploadController().upload);
 
 app.post('/token/create', new CreateTokenController().create);
 
-app.route({
-  method: 'GET',
-  url: '/images',
-  preHandler: autMiddleware,
-  handler: new GetImageNameController().get
-});
+app.get('/images/:token', new GetImageNameController().get);
 
-app.route({
-  method: 'GET',
-  url: '/render/:filename',
-  preHandler: autMiddleware,
-  handler: new RenderImageController().provide
-});
+app.get('/render/:token/:filename', new RenderImageController().provide);
 
 app.listen({ port: 4000 }).then(() => {
   console.log("Server is running on port 4000")
