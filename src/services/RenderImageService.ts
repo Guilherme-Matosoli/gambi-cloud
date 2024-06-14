@@ -3,14 +3,14 @@ import fs from "fs";
 import { verifyFileExists } from "../utils/verifyFileExists";
 
 interface RenderImageProps {
-  userId: string,
+  token: string,
   filename: string
 };
 
 export class RenderImageService {
-  async render({ userId, filename }: RenderImageProps) {
+  async render({ token, filename }: RenderImageProps) {
     try {
-      const filePath = path.resolve(__dirname, "../../public/uploads/", userId, filename);
+      const filePath = path.resolve(__dirname, "../../public/uploads/", token, filename);
       const fileExists = verifyFileExists(filePath);
       if (!fileExists) return "Image does not exists";
 

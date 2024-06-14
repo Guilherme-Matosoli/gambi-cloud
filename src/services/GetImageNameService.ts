@@ -2,9 +2,9 @@ import path from "path";
 import fs from "fs";
 
 export class GetImageNameService {
-  async get(userId: string) {
+  async get(token: string) {
     try {
-      const filePath = path.resolve(__dirname, "../../public/uploads/", userId);
+      const filePath = path.resolve(__dirname, "../../public/uploads/", token);
       const files = await fs.promises.readdir(filePath);
 
       const images = await Promise.all(
