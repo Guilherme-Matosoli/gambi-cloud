@@ -4,10 +4,10 @@ import { GetImageNameService } from "../services/GetImageNameService";
 export class GetImageNameController {
   async get(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const userId = req.headers.cookie as string;
+      const { token } = req.params as { token: string };
 
       const getImageService = new GetImageNameService();
-      const images = await getImageService.get(userId);
+      const images = await getImageService.get(token);
 
       reply.status(200).send(images);
     }

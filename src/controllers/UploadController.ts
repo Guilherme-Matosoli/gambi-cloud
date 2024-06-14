@@ -4,7 +4,7 @@ import { UploadServide } from "../services/UploadService";
 export class UploadController {
   async upload(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const token = req.headers.authorization;
+      const { token } = req.params as { token: string };
       if (!token) {
         return reply.status(401).send({ message: "User without authorization token" });
       };
