@@ -3,7 +3,6 @@ import fastify from "fastify";
 import multipart from "@fastify/multipart";
 
 import { UploadController } from "./controllers/UploadController";
-import { CreateTokenController } from './controllers/CreateTokenController';
 import { GetImageNameController } from './controllers/GetImageNameController';
 import { RenderImageController } from './controllers/RenderImageController';
 
@@ -11,9 +10,7 @@ export const app = fastify();
 app.register(multipart);
 
 
-app.post('/upload', new UploadController().upload);
-
-app.post('/token/create', new CreateTokenController().create);
+app.post('/upload/:token', new UploadController().upload);
 
 app.get('/images/:token', new GetImageNameController().get);
 
