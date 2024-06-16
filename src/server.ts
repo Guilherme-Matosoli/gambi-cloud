@@ -1,13 +1,19 @@
 import 'dotenv/config';
 import fastify from "fastify";
 import multipart from "@fastify/multipart";
+import cors from "@fastify/cors";
 
 import { UploadController } from "./controllers/UploadController";
 import { GetImageNameController } from './controllers/GetImageNameController';
 import { RenderImageController } from './controllers/RenderImageController';
 
+
 export const app = fastify();
 app.register(multipart);
+app.register(cors, {
+  origin: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+});
 
 
 app.post('/upload/:token', new UploadController().upload);
