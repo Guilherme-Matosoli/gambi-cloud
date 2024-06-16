@@ -22,7 +22,7 @@ export const validateFile = ({ file, fileSize }: ValidateFileProps) => {
 
   if (!acceptedMimeTypes.includes(file.mimetype)) return "File extension not accept";
 
-  if (fileSize > maxSize) return "Max size exceeded limit (5MB)";
+  if (fileSize > maxSize) return "Max size exceeded limit (2MB)";
 
   return null;
 };

@@ -19,7 +19,7 @@ export class UploadController {
 
       if (
         uploadedImage == "File extension not accept" ||
-        uploadedImage == "Max size exceeded limit (5MB)" ||
+        uploadedImage == "Max size exceeded limit (2MB)" ||
         uploadedImage == "File already exist"
       ) return reply.status(415).send({ message: uploadedImage });
 
