@@ -17,7 +17,6 @@ export const validateFile = ({ file, fileSize }: ValidateFileProps) => {
     "image/bmp",
     "image/webp",
     "image/tiff",
-    "image/svg+xml"
   ];
 
   if (!acceptedMimeTypes.includes(file.mimetype)) return "File extension not accept";
