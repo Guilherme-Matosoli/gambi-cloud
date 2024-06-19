@@ -24,6 +24,10 @@ app.get('/images/:token', new GetImageNameController().get);
 
 app.get('/render/:token/:filename', new RenderImageController().provide);
 
-app.listen({ port: 4000 }).then(() => {
-  console.log("Server is running on port 4000")
+const PORT = process.env.PORT || 4000;
+
+app.listen({ port: Number(PORT), host: '0.0.0.0' }, (err, address) => {
+  if (err) throw err;
+
+  console.log("Server is running on: " + address)
 });
