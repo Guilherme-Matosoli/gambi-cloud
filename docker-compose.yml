@@ -9,5 +9,11 @@ services:
       - "4000:4000"
     volumes:
       - .:/usr/src/app
+      - ./public/uploads:/home/node/app/public/uploads
     environment:
       - PORT=4000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '512M'
