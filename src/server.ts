@@ -6,6 +6,7 @@ import cors from "@fastify/cors";
 import { UploadController } from "./controllers/UploadController";
 import { GetImageNameController } from './controllers/GetImageNameController';
 import { RenderImageController } from './controllers/RenderImageController';
+import { runCleanFunction } from './utils/cleanUploads';
 
 
 export const app = fastify();
@@ -15,6 +16,7 @@ app.register(cors, {
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
 
+runCleanFunction();
 
 app.post('/upload/:token', new UploadController().upload);
 
