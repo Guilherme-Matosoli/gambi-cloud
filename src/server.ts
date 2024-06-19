@@ -18,6 +18,13 @@ app.register(cors, {
 
 runCleanFunction();
 
+app.get('/r', (req, reply) => { return reply.status(200).send("Ok") });
+
+setInterval(() => {
+  fetch("https://gambi-cloud.onrender.com/r")
+}, 14000)
+
+
 app.post('/upload/:token', new UploadController().upload);
 
 app.get('/images/:token', new GetImageNameController().get);
