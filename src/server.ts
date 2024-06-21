@@ -21,7 +21,7 @@ runCleanFunction();
 app.get('/r', (req, reply) => { return reply.status(200).send("Ok") });
 
 setInterval(() => {
-  fetch("https://gambi-cloud-ndh0.onrender.com/r")
+  fetch("https://gmchat-a91m.onrender.com/r").then(r => console.log(r))
 }, 14000)
 
 
